@@ -2,13 +2,14 @@
   "name": "fflip-express",
   "version": "0.0.0",
   "description": "FFlip integration for the Express web framework",
-  "main": "index.js",
+  "main": "lib/fflip-express.js",
   "scripts": {
     "test": "node_modules/.bin/mocha --reporter dot --recursive ./tests/util/setup.js ./tests"
   },
   "author": "Fred K. Schott <fkschott@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "fflip": "git://github.com/FredKSchott/fflip.git#v4-new-interface",
     "mocha": "^2.4.5",
     "sinon": "^1.17.3"
   }
