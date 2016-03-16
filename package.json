@@ -8,6 +8,9 @@
   },
   "author": "Fred K. Schott <fkschott@gmail.com>",
   "license": "ISC",
+  "peerDependencies": {
+    "fflip": "^4.0.0"
+  },
   "devDependencies": {
     "fflip": "git://github.com/FredKSchott/fflip.git#v4-new-interface",
     "mocha": "^2.4.5",
