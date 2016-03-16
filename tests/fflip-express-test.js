@@ -25,8 +25,7 @@ var FFlipExpressIntegration = require('../lib/fflip-express');
 
 var customizationOptions = {
 	cookieName: 'CUSTOM_COOKIE_NAME',
-	routeParamForName: 'CUSTOM_NAME_PARAM',
-	routeParamForAction: 'CUSTOM_ACTION_PARAM',
+	manualRoutePath: 'CUSTOM/PATH/:name/:action',
 	cookieMaxAge: 123456789
 };
 
@@ -125,8 +124,7 @@ describe('fflip-express', function(){
 			var expressIntegration = new FFlipExpressIntegration(fflip);
 			assert.deepEqual(expressIntegration.options, {
 				cookieName: 'fflip',
-				routeParamForName: 'name',
-				routeParamForAction: 'action',
+				manualRoutePath: '/fflip/:name/:action',
 				cookieMaxAge: 900000
 			});
 		});
@@ -135,8 +133,7 @@ describe('fflip-express', function(){
 			var expressIntegration = new FFlipExpressIntegration(fflip, customizationOptions);
 			assert.deepEqual(expressIntegration.options, {
 				cookieName: 'CUSTOM_COOKIE_NAME',
-				routeParamForName: 'CUSTOM_NAME_PARAM',
-				routeParamForAction: 'CUSTOM_ACTION_PARAM',
+				manualRoutePath: 'CUSTOM/PATH/:name/:action',
 				cookieMaxAge: 123456789
 			});
 		});
@@ -258,8 +255,8 @@ describe('fflip-express', function(){
 				params: {},
 				cookies: {}
 			};
-			reqMock.params[customizationOptions.routeParamForName] = 'fClosed';
-			reqMock.params[customizationOptions.routeParamForAction] = '1';
+			reqMock.params.name = 'fClosed';
+			reqMock.params.action = '1';
 			resMock = {
 				json: this.sandbox.spy(),
 				cookie: this.sandbox.spy()
@@ -267,7 +264,7 @@ describe('fflip-express', function(){
 		});
 
 		it('should propogate a 404 error if feature does not exist', function(done) {
-			reqMock.params[customizationOptions.routeParamForName] = 'doesnotexist';
+			reqMock.params.name = 'doesnotexist';
 			expressIntegration.manualRoute(reqMock, resMock, function(err) {
 				assert(err);
 				assert(err.fflip);
