@@ -1,6 +1,6 @@
 {
   "name": "fflip-express",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "FFlip integration for the Express web framework",
   "main": "lib/fflip-express.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "fflip": "^4.0.0"
   },
   "devDependencies": {
-    "fflip": "git://github.com/FredKSchott/fflip.git#v4-new-interface",
+    "fflip": "git://github.com/FredKSchott/fflip.git#v4",
     "mocha": "^2.4.5",
     "sinon": "^1.17.3"
   }

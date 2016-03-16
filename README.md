@@ -2,9 +2,11 @@
 
 **fflip-express** is an [Express.js](http://expressjs.com/) integration for the [fflip](https://github.com/FredKSchott/fflip) feature-flagging library.
 
-```
+> **NOTE:** This integration is currently still in development, and has not yet been published to npm. It will be published once [fflip v4.0](https://github.com/FredKSchott/fflip/pull/15) (the latest version to support plugins) is published. Until then, it can still be checked out from Github.
+
+<!-- ```
 npm install fflip-express --save
-```
+``` -->
 
 ## Configuration
 
