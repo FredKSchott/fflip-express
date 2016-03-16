@@ -1,0 +1,11 @@
+{
+  "name": "fflip-express",
+  "version": "0.0.0",
+  "description": "FFlip integration for the Express web framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fred K. Schott <fkschott@gmail.com>",
+  "license": "ISC"
+}
