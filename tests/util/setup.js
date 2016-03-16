@@ -3,9 +3,9 @@
 var sinon = require('sinon');
 
 beforeEach(function() {
-  this.sinon = sinon.sandbox.create();
+  this.sandbox = sinon.sandbox.create();
 });
 
 afterEach(function() {
-  this.sinon.verifyAndRestore();
+  this.sandbox.verifyAndRestore();
 });

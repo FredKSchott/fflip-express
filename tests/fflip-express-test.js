@@ -21,7 +21,6 @@ function isObjectEmpty(obj) {
 	return true;
 }
 
-var sandbox = sinon.sandbox.create();
 var FFlipExpressIntegration = require('../lib/fflip-express');
 
 var customizationOptions = {
@@ -120,10 +119,6 @@ describe('fflip-express', function(){
 		fflip.config(configData);
 	});
 
-	afterEach(function(){
-		sandbox.verifyAndRestore();
-	});
-
 	describe('configuration', function() {
 
 		it('should set option defaults properly when no user-defined options are passed', function() {
@@ -170,7 +165,7 @@ describe('fflip-express', function(){
 				cookies: {}
 			};
 			reqMock.cookies[customizationOptions.cookieName] = {fClosed: true};
-			renderOriginalSpy = sandbox.spy();
+			renderOriginalSpy = this.sandbox.spy();
 			resMock = {
 				render: renderOriginalSpy
 			};
@@ -211,7 +206,7 @@ describe('fflip-express', function(){
 		});
 
 		it('req.fflip.setFeatures() should call getFeaturesForUser() with cookie flags', function(done) {
-			var spy = sandbox.spy(fflip, 'getFeaturesForUser');
+			var spy = this.sandbox.spy(fflip, 'getFeaturesForUser');
 			expressIntegration.middleware(reqMock, resMock, function() {
 				reqMock.fflip.setForUser(userXYZ);
 				assert(fflip.getFeaturesForUser.calledOnce);
@@ -240,7 +235,7 @@ describe('fflip-express', function(){
 		});
 
 		it('req.fflip.featuers should be an empty object if setFeatures() has not been called', function(done) {
-			var consoleErrorStub = sandbox.stub(console, 'error'); // Supress Error Output
+			var consoleErrorStub = this.sandbox.stub(console, 'error'); // Supress Error Output
 			expressIntegration.middleware(reqMock, resMock, function() {
 				assert.ok(isObjectEmpty(reqMock.fflip.features));
 				done();
@@ -266,8 +261,8 @@ describe('fflip-express', function(){
 			reqMock.params[customizationOptions.routeParamForName] = 'fClosed';
 			reqMock.params[customizationOptions.routeParamForAction] = '1';
 			resMock = {
-				json: sandbox.spy(),
-				cookie: sandbox.spy()
+				json: this.sandbox.spy(),
+				cookie: this.sandbox.spy()
 			};
 		});
 
@@ -338,8 +333,8 @@ describe('fflip-express', function(){
 		beforeEach(function() {
 			expressIntegration = new FFlipExpressIntegration(fflip);
 			appMock = {
-				use: sandbox.spy(),
-				get: sandbox.spy()
+				use: this.sandbox.spy(),
+				get: this.sandbox.spy()
 			};
 		});
 
