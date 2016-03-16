@@ -25,8 +25,8 @@ var FFlipExpressIntegration = require('../lib/fflip-express');
 
 var customizationOptions = {
 	cookieName: 'CUSTOM_COOKIE_NAME',
+	cookieOptions: {maxAge: 123456789},
 	manualRoutePath: 'CUSTOM/PATH/:name/:action',
-	cookieMaxAge: 123456789
 };
 
 var configData = {
@@ -124,8 +124,8 @@ describe('fflip-express', function(){
 			var expressIntegration = new FFlipExpressIntegration(fflip);
 			assert.deepEqual(expressIntegration.options, {
 				cookieName: 'fflip',
+				cookieOptions: undefined,
 				manualRoutePath: '/fflip/:name/:action',
-				cookieMaxAge: 900000
 			});
 		});
 
@@ -134,7 +134,7 @@ describe('fflip-express', function(){
 			assert.deepEqual(expressIntegration.options, {
 				cookieName: 'CUSTOM_COOKIE_NAME',
 				manualRoutePath: 'CUSTOM/PATH/:name/:action',
-				cookieMaxAge: 123456789
+				cookieOptions: {maxAge: 123456789},
 			});
 		});
 
@@ -285,7 +285,7 @@ describe('fflip-express', function(){
 
 		it('should set the right cookie flags', function() {
 			expressIntegration.manualRoute(reqMock, resMock);
-			assert(resMock.cookie.calledWithMatch(customizationOptions.cookieName, {fClosed: true}, { maxAge: customizationOptions.cookieMaxAge }));
+			assert(resMock.cookie.calledWithMatch(customizationOptions.cookieName, {fClosed: true}, customizationOptions.cookieOptions));
 		});
 
 		it('should send back 200 json response on successful call', function() {

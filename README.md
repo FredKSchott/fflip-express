@@ -9,6 +9,8 @@ npm install fflip-express --save
 ## Configuration
 
 ```javascript
+var FFlipExpressIntegration = require('fflip-express');
+
 // The first `fflip` argument is the fflip module used in your application
 // The second `options` argument is optional, and lets you configure your integration
 var fflipExpress = new FFlipExpressIntegration(fflip, options);
@@ -17,8 +19,8 @@ var fflipExpress = new FFlipExpressIntegration(fflip, options);
 Available configuration options include:
 
 - `cookieName`: The name of the cookie where a users manual feature flags will be saved. (Defaults to 'fflip')
+- `cookieOptions`: Set additional options for the fflip cookie, such as `expires` & `maxAge`. (No default)
 - `manualRoutePath`: The URL path for the manual feature flipping endpoint. Must include both `:name` and `:action` route params. (Defaults to '/fflip/:name/:action')
-- `cookieMaxAge`: The max age of the cookie that holds a users manual feature flags (Defaults to 900000)
 
 
 ## Usage
