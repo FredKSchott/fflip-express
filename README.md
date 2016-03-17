@@ -29,7 +29,7 @@ Available configuration options include:
 
 This integration provides two different ways to connect fflip into your express application:
 
-### fflipExpress.middleware
+### `fflipExpress.middleware`
 
 ```javascript
 app.use(fflipExpress.middleware);
@@ -49,7 +49,7 @@ req.fflip = {
 **Use fflip on the client:** Once `setForUser()` has been called, fflip will also include a `FeaturesJSON` template variable that is the JSON string of your user's enabled features. To deliver this down to the client, just make sure your template something like this: `<script>var Features = {{ FeaturesJSON }}; </script>`.
 
 
-#### fflipExpress.manualRoute
+### `fflipExpress.manualRoute`
 
 ```javascript
 // Feel free to use any route you'd like, as long as `name` & `action` exist as route parameters.
@@ -58,7 +58,7 @@ app.get('/custom_path/:name/:action', fflipExpress.manualRoute);
 
 **A route for manually flipping on/off features:** If you have cookies enabled, you can visit this route to manually override a feature to always return true/false for your own session. Just replace ':name' with the Feature name and ':action' with 1 to enable, 0 to disable, or -1 to reset (remove the cookie override). This override is stored in the user's cookie under the name `fflip`, which is then read by `fflip.expressMiddleware()` and `req.fflip` automatically.
 
-#### fflipExpress.applyAll(app)
+### `fflipExpress.applyAll(app)`
 
 Sets up the express middleware and route automatically. Equivilent to running:
 
