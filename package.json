@@ -12,7 +12,7 @@
     "fflip": "^4.0.0"
   },
   "devDependencies": {
-    "fflip": "git://github.com/FredKSchott/fflip.git#v4",
+    "fflip": "^4.0.0",
     "mocha": "^2.4.5",
     "sinon": "^1.17.3"
   }
