@@ -176,6 +176,15 @@ describe('fflip-express', function(){
 			});
 		});
 
+		it('should run normally (set fflip object onto req) when pulled off the module', function(done) {
+			var middlewareFunction = expressIntegration.middleware;
+			middlewareFunction(reqMock, resMock, function() {
+				assert(reqMock.fflip);
+				assert(reqMock.fflip._flags);
+				done();
+			});
+		});
+
 		it('should allow res.render() to be called without model object', function(done) {
 			expressIntegration.middleware(reqMock, resMock, function() {
 				assert.doesNotThrow(function() {
@@ -288,10 +297,16 @@ describe('fflip-express', function(){
 			assert(resMock.cookie.calledWithMatch(customizationOptions.cookieName, {fClosed: true}, customizationOptions.cookieOptions));
 		});
 
+		it('should run without crashing when pulled off the module', function() {
+			var routeFunction = expressIntegration.manualRoute;
+			routeFunction(reqMock, resMock);
+		});
+
 		it('should send back 200 json response on successful call', function() {
 			expressIntegration.manualRoute(reqMock, resMock);
 			assert(resMock.json.calledWith(200));
 		});
+
 
 		// var request = require('supertest')('http://localhost:5555');
 		// it('should return a 404 error if feature does not exist', function(done) {
