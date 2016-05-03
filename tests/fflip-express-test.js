@@ -211,21 +211,11 @@ describe('fflip-express', function(){
 			});
 		});
 
-		it('req.fflip.setFeatures() should call getFeaturesForUser() with cookie flags', function(done) {
-			var spy = this.sandbox.spy(fflip, 'getFeaturesForUser');
-			expressIntegration.middleware(reqMock, resMock, function() {
-				reqMock.fflip.setForUser(userXYZ);
-				assert(fflip.getFeaturesForUser.calledOnce);
-				assert(fflip.getFeaturesForUser.calledWith(userXYZ, {fClosed: true}));
-				spy.restore();
-				done();
-			});
-		});
-
 		it('req.fflip.has() should get the correct features', function(done) {
 			expressIntegration.middleware(reqMock, resMock, function() {
 				reqMock.fflip.setForUser(userXYZ);
 				assert.strictEqual(reqMock.fflip.has('fOpen'), true);
+				// NOTE(fks) 05-03-2016: `fClosed` evals to false, but reqMock has an override cookie which sets it to true
 				assert.strictEqual(reqMock.fflip.has('fClosed'), true);
 				assert.strictEqual(reqMock.fflip.has('notafeature'), false);
 				done();
