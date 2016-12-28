@@ -26,7 +26,11 @@ Available configuration options include:
 
 ## Usage
 
-This integration provides two different ways to connect fflip into your express application:
+This integration provides two different ways to connect fflip into your express application; both of them require that you have `req.cookies` available from cookieParser:
+
+```javascript
+app.use(cookieParser());
+```
 
 ### `fflipExpress.middleware`
 
@@ -57,7 +61,7 @@ app.get('/custom_path/:name/:action', fflipExpress.manualRoute);
 
 **A route for manually flipping on/off features:** If you have cookies enabled, you can visit this route to manually override a feature to always return true/false for your own session. Just replace ':name' with the Feature name and ':action' with 1 to enable, 0 to disable, or -1 to reset (remove the cookie override). This override is stored in the user's cookie under the name `fflip`, which is then read by `fflip.expressMiddleware()` and `req.fflip` automatically.
 
-### `fflipExpress.applyAll(app)`
+### `fflipExpress.connectAll(app)`
 
 Sets up the express middleware and route automatically. Equivilent to running:
 
