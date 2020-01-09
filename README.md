@@ -63,7 +63,7 @@ app.get('/custom_path/:name/:action', fflipExpress.manualRoute);
 
 ### `fflipExpress.connectAll(app)`
 
-Sets up the express middleware and route automatically. Equivilent to running:
+Sets up the express middleware and route automatically. Equivalent to running:
 
 ```javascript
 app.use(fflipExpress.middleware);
